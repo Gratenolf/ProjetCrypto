@@ -28,18 +28,38 @@ public class InterfaceGenClef extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        reinit = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        annuler = new javax.swing.JButton();
+        valider = new javax.swing.JButton();
+        affichage = new javax.swing.JPanel();
+        panneauCarte = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        reinit.setText("Réinitialiser");
+        jPanel1.add(reinit, java.awt.BorderLayout.NORTH);
+
+        jPanel4.setLayout(new java.awt.GridLayout(2, 1));
+
+        annuler.setText("Annuler");
+        jPanel4.add(annuler);
+
+        valider.setText("Valider");
+        jPanel4.add(valider);
+
+        jPanel1.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_END);
+
+        affichage.setLayout(new java.awt.GridLayout(1, 54));
+        getContentPane().add(affichage, java.awt.BorderLayout.PAGE_END);
+
+        panneauCarte.setLayout(new java.awt.GridLayout(4, 13));
+        getContentPane().add(panneauCarte, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -87,5 +107,12 @@ public class InterfaceGenClef extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel affichage;
+    private javax.swing.JButton annuler;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel panneauCarte;
+    private javax.swing.JButton reinit;
+    private javax.swing.JButton valider;
     // End of variables declaration//GEN-END:variables
 }

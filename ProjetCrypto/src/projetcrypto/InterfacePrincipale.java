@@ -1,12 +1,13 @@
 package projetcrypto;
 public class InterfacePrincipale extends javax.swing.JFrame {
-    private int jeuDeCarte[];
+    private Carte jeuDeCarte[];
     private char lettres[];
     private char clefDeBase[];
     private char clefCourante[];
     
     public InterfacePrincipale() {
         initComponents();
+        this.jeuDeCarte = new Carte[54];
     }
 
     /**
@@ -18,6 +19,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CentreMod = new javax.swing.JPanel();
         i_head = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         randClef = new javax.swing.JButton();
@@ -39,8 +41,12 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         crypter = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         affCrypt = new javax.swing.JTextField();
+        AffichageGeneral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout());
+
+        CentreMod.setLayout(new java.awt.BorderLayout());
 
         i_head.setLayout(new java.awt.BorderLayout());
 
@@ -67,7 +73,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         jLabel1.setText("Definition Clef");
         i_head.add(jLabel1, java.awt.BorderLayout.NORTH);
 
-        getContentPane().add(i_head, java.awt.BorderLayout.PAGE_START);
+        CentreMod.add(i_head, java.awt.BorderLayout.PAGE_START);
 
         i_foot.setLayout(new java.awt.BorderLayout());
 
@@ -80,7 +86,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         i_foot.add(jPanel4, java.awt.BorderLayout.CENTER);
         i_foot.add(affMessDecrypt, java.awt.BorderLayout.SOUTH);
 
-        getContentPane().add(i_foot, java.awt.BorderLayout.PAGE_END);
+        CentreMod.add(i_foot, java.awt.BorderLayout.PAGE_END);
 
         i_body.setLayout(new java.awt.GridLayout(8, 1));
 
@@ -105,13 +111,31 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         i_body.add(jPanel6);
         i_body.add(affCrypt);
 
-        getContentPane().add(i_body, java.awt.BorderLayout.CENTER);
+        CentreMod.add(i_body, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(CentreMod);
+
+        AffichageGeneral.setLayout(new java.awt.GridLayout());
+        getContentPane().add(AffichageGeneral);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void randClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randClefActionPerformed
-        
+        this.jeuDeCarte = new Carte[54];
+        int val[] = new int[54];
+        for(int i = 0; i < 54; i++)
+            val[i] = i + 1;
+        int k = 0;
+        while(k != 54){
+            int rnd = (int) (Math.random() * 54);
+            if(val[rnd] != 0){
+                this.jeuDeCarte[k] = new Carte(rnd);
+                k++;
+                val[rnd] = 0;
+            }
+        }
+        ///Affichage General
     }//GEN-LAST:event_randClefActionPerformed
 
     private void defClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defClefActionPerformed
@@ -154,6 +178,8 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AffichageGeneral;
+    private javax.swing.JPanel CentreMod;
     private javax.swing.JTextField affCC;
     private javax.swing.JTextField affCCP3;
     private javax.swing.JTextField affCdB;
