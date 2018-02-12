@@ -128,18 +128,20 @@ public class InterfacePrincipale extends javax.swing.JFrame {
             val[i] = i + 1;
         int k = 0;
         while(k != 54){
-            int rnd = (int) (Math.random() * 54);
-            if(val[rnd] != 0){
+            int rnd = (int) (Math.random() * 54) + 1;
+            if(val[rnd - 1] != 0){
                 this.jeuDeCarte[k] = new Carte(rnd);
                 k++;
-                val[rnd] = 0;
+                val[rnd - 1] = 0;
             }
         }
         ///Affichage General
     }//GEN-LAST:event_randClefActionPerformed
 
     private void defClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defClefActionPerformed
-        
+        InterfaceGenClef igc = new InterfaceGenClef(this,false);
+        this.setVisible(false);
+        igc.setVisible(true);
     }//GEN-LAST:event_defClefActionPerformed
 
     /**

@@ -11,7 +11,8 @@ public class Carte {
     public Carte(int valeur){
         this.valeur = valeur;
         if(valeur > 52){
-            this.num = 53;
+            this.valeur = 53;
+            this.num = 14;
             this.nom = "Joker";
             if(valeur == 53)
                 this.element = "Rouge";
@@ -24,7 +25,7 @@ public class Carte {
             else
                 this.num = valeur % N;
             this.nom = nomElem[this.num - 1];
-            int valtmp = ((this.valeur - (this.valeur % N)) / N);
+            int valtmp = (((this.valeur - 1 ) - ((this.valeur - 1) % N)) / N);
             switch(valtmp){
                 case 0 : this.element = "Trefle";break;
                 case 1 : this.element = "Carreau";break;

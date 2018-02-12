@@ -13,11 +13,11 @@ public class TestProjet {
         
         int k = 0;
         while(k != 54){
-            int rnd = (int) (Math.random() * 54);
-            if(val[rnd] != 0){
+            int rnd = (int) (Math.random() * 54) + 1;
+            if(val[rnd - 1] != 0){
                 jeuDeCarte[k] = new Carte(rnd);
                 k++;
-                val[rnd] = 0;
+                val[rnd - 1] = 0;
             }
         }
         for(int i = 0; i < 54; i++)

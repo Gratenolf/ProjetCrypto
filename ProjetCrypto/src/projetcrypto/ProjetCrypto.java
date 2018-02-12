@@ -14,7 +14,7 @@ public class ProjetCrypto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println((int)(Math.random()*100)+1);
         System.out.println((int)(Math.random()*100)+1);
         System.out.println((int)(Math.random()*100)+1);
@@ -23,6 +23,6 @@ public class ProjetCrypto {
         System.out.println((int)(Math.random()*100)+1);
         System.out.println((int)(Math.random()*100)+1);
         // TODO code application logic here
-    }
+    }*/
     
 }

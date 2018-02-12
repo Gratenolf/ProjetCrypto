@@ -1,37 +1,86 @@
 package projetcrypto;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class InterfaceGenClef extends javax.swing.JDialog {
     
-    public Carte JeuDeCarte[];
+    public int jeuDeCarte[];
+    private int k = 0;
 
     public InterfaceGenClef(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jeuDeCarte = new int[54];
+        for(int i = 0; i < 54; i++)
+            jeuDeCarte[i] = 0;
+        for(int i = 0; i < 54; i++){
+            this.panneauCarte.add(creerPanCarte(new Carte(i+1)));
+            System.out.print((i+1)+"");
+        }
+    }
+    
+    private void afficheJDC(){
+        for(int i = 0 ; i< 54; i++)
+            System.out.print(jeuDeCarte[i]+" ");
+        System.out.println("");
     }
     
     private JPanel creerPanCarte(Carte c){
         JPanel jp = new JPanel();
         jp.setLayout(new BorderLayout());
         
-        JButton jb = new JButton();
+        JToggleButton jb = new JToggleButton();
         jb.setPreferredSize(new Dimension(40, 40));
         jb.setBackground(Color.white);
         if(c.getValeur() < 53){
-            jb.setIcon(new ImageIcon("../../img/"+c.getElement()+".png"));
+            jb.setIcon(new ImageIcon("img/"+c.getElement()+".png"));
             jb.setText(c.getNom());
+            jb.setForeground(Color.WHITE);
+            jb.setHorizontalTextPosition(SwingConstants.CENTER);
         }
-        else if(c.getValeur() == 53)
-            jb.setIcon(new ImageIcon("../../img/JokerN.png"));
+        else if(c.getValeur() == 53 && c.getElement() == "Noir")
+            jb.setIcon(new ImageIcon("img/JokerN.png"));
         else
-            jb.setIcon(new ImageIcon("../../img/JokerR.png"));
+            jb.setIcon(new ImageIcon("img/JokerR.png"));            
         
+        JTextField jtf = new JTextField();
+        jtf.setText("");
+        jtf.setEditable(false);
         
+        jp.add(jb, BorderLayout.CENTER);
+        jp.add(jtf,BorderLayout.SOUTH);
+        
+        // Y A UN SOUCIS ICI 
+        jb.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                JToggleButton jtb = (JToggleButton) e.getSource();
+                if(jtb.isSelected()){
+                    jeuDeCarte[k] = c.getValeur();
+                    jtf.setText((++k)+"");
+                    afficheJDC();
+                    System.out.println("ajout element");
+                }
+                else{
+                    jtf.setText("");
+                    int tmp = 0;
+                    while(tmp != c.getValeur())
+                        tmp++;
+                    for(int i = tmp; i < k; i++)
+                        jeuDeCarte[i] = jeuDeCarte[i + 1];
+                    k--;
+                    afficheJDC();
+                    System.out.println("element supprimé");
+                }
+            }
+        });        
+        
+        return jp;
     }
     
     public void initPanneau(){
-        
+        for(int i = 0; i < 54; i++)
+            this.panneauCarte.add(creerPanCarte(new Carte(i+1)));
     }
     
     @SuppressWarnings("unchecked")
@@ -68,7 +117,7 @@ public class InterfaceGenClef extends javax.swing.JDialog {
         affichage.setLayout(new java.awt.GridLayout(1, 54));
         getContentPane().add(affichage, java.awt.BorderLayout.PAGE_END);
 
-        panneauCarte.setLayout(new java.awt.GridLayout(4, 13));
+        panneauCarte.setLayout(new java.awt.GridLayout(5, 13));
         getContentPane().add(panneauCarte, java.awt.BorderLayout.CENTER);
 
         pack();
