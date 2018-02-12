@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetcrypto;
-
-/**
- *
- * @author ng452532
- */
 public class InterfacePrincipale extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InterfacePrincipale
-     */
+    private int jeuDeCarte[];
+    private char lettres[];
+    private char clefDeBase[];
+    private char clefCourante[];
+    
     public InterfacePrincipale() {
         initComponents();
     }
@@ -56,9 +47,19 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         jPanel5.setLayout(new java.awt.GridLayout(1, 2));
 
         randClef.setText("Aléatoire");
+        randClef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randClefActionPerformed(evt);
+            }
+        });
         jPanel5.add(randClef);
 
         defClef.setText("Définir");
+        defClef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defClefActionPerformed(evt);
+            }
+        });
         jPanel5.add(defClef);
 
         i_head.add(jPanel5, java.awt.BorderLayout.CENTER);
@@ -108,6 +109,14 @@ public class InterfacePrincipale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void randClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randClefActionPerformed
+        
+    }//GEN-LAST:event_randClefActionPerformed
+
+    private void defClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defClefActionPerformed
+        
+    }//GEN-LAST:event_defClefActionPerformed
 
     /**
      * @param args the command line arguments
