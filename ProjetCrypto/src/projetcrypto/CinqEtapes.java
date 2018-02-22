@@ -127,34 +127,129 @@ public class CinqEtapes {
             }
             vartempo+=1;
         }
-        System.out.print("\n Tableau A Etape 3 \n");
+        System.out.print("\n Tableau tempo A Etape 3 \n");
         for(int j=tabtempo.length-(posJokerInf);j<=53;j++){
             
             System.out.print(" "+tabtempo[j].getValeur()+"("+j+")");
         }
         System.out.println("");
         
-        System.out.print("\n Tableau B Etape 3 \n");
+        System.out.print("\n Tableau tempo B Etape 3 \n");
         for(int k=tabtempo.length-(posJokerSup)-1;k<tabtempo.length-(posJokerInf);k++){
             
             System.out.print(" "+tabtempo[k].getValeur()+"("+k+")");
         }
         System.out.println("");
         
-        System.out.print("\n Tableau C Etape 3 \n");
+        System.out.print("\n Tableau tempo C Etape 3 \n");
         for(int k=0;k<tabtempo.length-(posJokerSup)-1;k++){
             
             System.out.print(" "+tabtempo[k].getValeur());
         }
-        System.out.println("");
+        System.out.println("\n");
         
-        System.out.println("Etape 3 Complet");
+        System.out.println("Etape 3 tableau tempo complet");
         for(int l=0;l<54;l++)
             System.out.print(" "+tabtempo[l].getValeur());
-        System.out.println("");
+        System.out.println("\n");
+        
+        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");
+        for(int m=0;m<54;m++){
+            jeuDeCartes[m] = tabtempo[m];
+            System.out.print(jeuDeCartes[m].getValeur()+" ");
+        }
+        System.out.println("\n");
     }
     
     public void Etape4(){
+        String Elem = jeuDeCartes[53].getElement();
+        String nomElem = jeuDeCartes[53].getNom();
+        int nbCarte=0;
+        Carte[] tabtempo = new Carte[54];
+        
+        
+        if(Elem=="Trefle"){
+            //1-13
+            System.out.println("Trefle"+" "+nomElem);
+            if(nomElem!="J" && nomElem!="Q" && nomElem!="K" )
+                nbCarte=Integer.parseInt(nomElem);
+            else
+                if(nomElem=="J")
+                    nbCarte=11;
+                else if(nomElem=="Q")
+                    nbCarte=12;
+                else if(nomElem=="K")
+                    nbCarte=13;
+        }
+        else if(Elem=="Carreau"){
+            //14-26
+            System.out.println("Carreau"+" "+nomElem);
+            if(nomElem!="J" && nomElem!="Q" && nomElem!="K" )
+                nbCarte=13+Integer.parseInt(nomElem);
+            else
+                if(nomElem=="J")
+                    nbCarte=13+11;
+                else if(nomElem=="Q")
+                    nbCarte=13+12;
+                else if(nomElem=="K")
+                    nbCarte=13+13;
+        }
+        else if(Elem=="Coeur"){
+            //27-39
+            System.out.println("Coeur"+" "+nomElem);
+            if(nomElem!="J" && nomElem!="Q" && nomElem!="K" )
+                nbCarte=26+Integer.parseInt(nomElem);
+            else
+                if(nomElem=="J")
+                    nbCarte=26+11;
+                else if(nomElem=="Q")
+                    nbCarte=26+12;
+                else if(nomElem=="K")
+                    nbCarte=26+13;
+        }
+        else if(Elem=="Pique"){
+            //40-52
+            System.out.println("Pique"+" "+nomElem);
+            if(nomElem!="J" && nomElem!="Q" && nomElem!="K" )
+                nbCarte=39+Integer.parseInt(nomElem);
+            else
+                if(nomElem=="J")
+                    nbCarte=39+11;
+                else if(nomElem=="Q")
+                    nbCarte=39+12;
+                else if(nomElem=="K")
+                    nbCarte=39+13;
+        }
+        else{
+            nbCarte=53;
+        }
+        int incDebTab=0;
+        int incFinTab=1;
+        for(int i=0;i<54;i++){
+            
+            if(i==0){
+                tabtempo[i]=jeuDeCartes[0];
+            }
+            if (i>=1 && i<=nbCarte){
+                tabtempo[i]=jeuDeCartes[jeuDeCartes.length-nbCarte+incDebTab];
+                incDebTab++;
+            }
+            if(i>nbCarte){
+                tabtempo[i]=jeuDeCartes[incFinTab];
+                incFinTab++;
+            }
+        }
+        System.out.println("Tableau temporaire Etape 4");
+        for(int j=0;j<54;j++){
+            System.out.print(" "+tabtempo[j].getValeur());
+            
+        }
+        System.out.println("\n");
+        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");
+        for(int m=0;m<54;m++){
+            jeuDeCartes[m] = tabtempo[m];
+            System.out.print(jeuDeCartes[m].getValeur()+" ");
+        }
         
     }
     
