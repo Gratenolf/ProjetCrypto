@@ -6,7 +6,7 @@ public class Carte {
     private String nom;
     private int valeur;
     private String element;
-    private String[] nomElem = {"1","2","3","4","5","6","7","8","9","10","J","Q","K"};
+    private String[] nomElem = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
     
     public Carte(int valeur){
         this.valeur = valeur;
@@ -33,10 +33,6 @@ public class Carte {
                 case 3 : this.element = "Pique";break;
             }
         }
-    }
-    
-    public int getNum(){
-        return this.num;
     }
     
     public String getNom(){

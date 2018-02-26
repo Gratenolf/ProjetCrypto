@@ -44,7 +44,8 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         AffichageGeneral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        setLocation(new java.awt.Point(0, 0));
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         CentreMod.setLayout(new java.awt.BorderLayout());
 
@@ -115,7 +116,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
 
         getContentPane().add(CentreMod);
 
-        AffichageGeneral.setLayout(new java.awt.GridLayout());
+        AffichageGeneral.setLayout(new java.awt.GridLayout(1, 0));
         getContentPane().add(AffichageGeneral);
 
         pack();
@@ -131,6 +132,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
             int rnd = (int) (Math.random() * 54) + 1;
             if(val[rnd - 1] != 0){
                 this.jeuDeCarte[k] = new Carte(rnd);
+                System.out.println("indice :" + rnd + " getElement : " + jeuDeCarte[k].getElement());
                 k++;
                 val[rnd - 1] = 0;
             }
@@ -139,9 +141,10 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_randClefActionPerformed
 
     private void defClefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defClefActionPerformed
-        InterfaceGenClef igc = new InterfaceGenClef(this,false);
+        InterfaceGenerClef igc = new InterfaceGenerClef(this,false);
         this.setVisible(false);
         igc.setVisible(true);
+        igc.setLocationRelativeTo(null);
     }//GEN-LAST:event_defClefActionPerformed
 
     /**
