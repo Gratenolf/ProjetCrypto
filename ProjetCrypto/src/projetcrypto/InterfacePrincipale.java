@@ -1,4 +1,7 @@
 package projetcrypto;
+
+import javax.swing.JPanel;
+
 public class InterfacePrincipale extends javax.swing.JFrame {
     private Carte jeuDeCarte[];
     private char lettres[];
@@ -8,6 +11,10 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     public InterfacePrincipale() {
         initComponents();
         this.jeuDeCarte = new Carte[54];
+    }
+    
+    private void affGraphCarte(JPanel jp, int[] tabCarte){
+        
     }
 
     /**
@@ -26,21 +33,27 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         defClef = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         i_foot = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        affCCP3 = new javax.swing.JTextField();
-        affMessDecrypt = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        decMess = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        decMessSous = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        decMessFinal = new javax.swing.JLabel();
         i_body = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        affCdB = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        affCC = new javax.swing.JTextField();
+        clefC = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         messCrypt = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         crypter = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        affCrypt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        messageCrpt = new javax.swing.JLabel();
         AffichageGeneral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,46 +84,65 @@ public class InterfacePrincipale extends javax.swing.JFrame {
 
         i_head.add(jPanel5, java.awt.BorderLayout.CENTER);
 
-        jLabel1.setText("Definition Clef");
+        jLabel1.setText("Ordre initial des cartes :");
         i_head.add(jLabel1, java.awt.BorderLayout.NORTH);
 
         CentreMod.add(i_head, java.awt.BorderLayout.PAGE_START);
 
         i_foot.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setLayout(new java.awt.GridLayout(1, 2));
-
         jButton3.setText("Décrypter");
-        jPanel4.add(jButton3);
-        jPanel4.add(affCCP3);
+        i_foot.add(jButton3, java.awt.BorderLayout.NORTH);
 
-        i_foot.add(jPanel4, java.awt.BorderLayout.CENTER);
-        i_foot.add(affMessDecrypt, java.awt.BorderLayout.SOUTH);
+        jPanel2.setLayout(new java.awt.GridLayout(6, 0));
+
+        jLabel3.setText("Message crypté :");
+        jPanel2.add(jLabel3);
+        jPanel2.add(decMess);
+
+        jLabel8.setText("Soustraction :");
+        jPanel2.add(jLabel8);
+        jPanel2.add(decMessSous);
+
+        jLabel10.setText("Message :");
+        jPanel2.add(jLabel10);
+        jPanel2.add(decMessFinal);
+
+        i_foot.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         CentreMod.add(i_foot, java.awt.BorderLayout.PAGE_END);
 
-        i_body.setLayout(new java.awt.GridLayout(8, 1));
+        i_body.setLayout(new java.awt.GridLayout(9, 1));
 
-        jLabel4.setText("Clef de base");
+        jLabel4.setText("Ordre courant des cartes :");
         i_body.add(jLabel4);
-        i_body.add(affCdB);
 
-        jLabel5.setText("Clef courante");
+        jPanel1.setLayout(new java.awt.GridLayout());
+        jScrollPane1.setViewportView(jPanel1);
+
+        i_body.add(jScrollPane1);
+
+        jLabel5.setText("Clef courante :");
         i_body.add(jLabel5);
-        i_body.add(affCC);
+        i_body.add(clefC);
 
         jLabel6.setText("Message à crypter : ");
         i_body.add(jLabel6);
         i_body.add(messCrypt);
 
-        jPanel6.setLayout(new java.awt.GridLayout(1, 2));
+        jPanel3.setLayout(new java.awt.GridLayout());
 
-        crypter.setText("Crypter");
-        jPanel6.add(crypter);
-        jPanel6.add(jLabel7);
+        crypter.setText("Cryptage directe");
+        jPanel3.add(crypter);
 
-        i_body.add(jPanel6);
-        i_body.add(affCrypt);
+        jButton1.setText("Cryptage manuel");
+        jPanel3.add(jButton1);
+
+        i_body.add(jPanel3);
+
+        jLabel2.setText("Message crypté :");
+        i_body.add(jLabel2);
+        i_body.add(messageCrpt);
 
         CentreMod.add(i_body, java.awt.BorderLayout.CENTER);
 
@@ -185,26 +217,32 @@ public class InterfacePrincipale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AffichageGeneral;
     private javax.swing.JPanel CentreMod;
-    private javax.swing.JTextField affCC;
-    private javax.swing.JTextField affCCP3;
-    private javax.swing.JTextField affCdB;
-    private javax.swing.JTextField affCrypt;
-    private javax.swing.JTextField affMessDecrypt;
+    private javax.swing.JLabel clefC;
     private javax.swing.JButton crypter;
+    private javax.swing.JLabel decMess;
+    private javax.swing.JLabel decMessFinal;
+    private javax.swing.JLabel decMessSous;
     private javax.swing.JButton defClef;
     private javax.swing.JPanel i_body;
     private javax.swing.JPanel i_foot;
     private javax.swing.JPanel i_head;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField messCrypt;
+    private javax.swing.JLabel messageCrpt;
     private javax.swing.JButton randClef;
     // End of variables declaration//GEN-END:variables
 }

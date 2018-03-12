@@ -167,23 +167,7 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
                 afficheCarte[i].setName(""+c.getValeur());
             }
         }
-    }
-    
-    /*private void affCartes(){
-        for(int i = 0; i < N; i++){
-            if(jeuDeCarte[i] != 0){
-                Carte c = new Carte(jeuDeCarte[i]);
-                if(c.getElement().equals("Noir") && !afficheCarte[i].getText().equals("54"))
-                    rempLab(i, c, true);
-                else if(!afficheCarte[i].getText().equals(""+c.getValeur()))
-                    rempLab(i, c, true);
-            }
-            else if(afficheCarte[i].getText() != ""){
-                rempLab(i, null, false);
-            }
-        }
-    }*/
-    
+    }    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
