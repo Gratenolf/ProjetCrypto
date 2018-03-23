@@ -1,67 +1,93 @@
 package projetcrypto;
 
-public class CryptageManuel extends javax.swing.JDialog {
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-    public CryptageManuel(java.awt.Frame parent, boolean modal) {
+public class CryptageManuel extends javax.swing.JDialog {
+    private CinqEtapes a5;
+    private int etapeEff;
+    private java.awt.Frame parentP;
+    
+    public CryptageManuel(java.awt.Frame parent, boolean modal, Carte[] jeuDeCarte, CinqEtapes a5,String messCrypt) {
         super(parent, modal);
+        a5 = new CinqEtapes(jeuDeCarte);
+        this.a5 = a5;
+        etapeEff = 0;
+        parentP = parent;
         initComponents();
+        varMessage.setText(messCrypt);
+        this.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
+        
+    }
+    public CinqEtapes getA5(){
+        return this.a5;
     }
     
-    private void 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        varMessage = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        etape1Pan = new javax.swing.JPanel();
+        etape1Lab = new javax.swing.JLabel();
+        Etape1But = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel15 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        etape2Pan = new javax.swing.JPanel();
+        etape2Lab = new javax.swing.JLabel();
+        Etape2But = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel16 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        etape3Pan = new javax.swing.JPanel();
+        etape3Lab = new javax.swing.JLabel();
+        Etape3But = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel17 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        etape4Pan = new javax.swing.JPanel();
+        etape4Lab = new javax.swing.JLabel();
+        Etape4But = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jPanel18 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        etape5Pan = new javax.swing.JPanel();
+        etape5Lab = new javax.swing.JLabel();
+        Etape5But = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jPanel19 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        varClefCrypt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        varMessCrypt = new javax.swing.JTextField();
+        quitterBut = new javax.swing.JButton();
+        terminerBut = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, quitterBut, org.jdesktop.beansbinding.ELProperty.create("${action.enabled}"), this, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
+        bindingGroup.addBinding(binding);
 
         jPanel1.setLayout(new java.awt.GridLayout(4, 1));
 
         jLabel1.setText("Message :");
         jPanel1.add(jLabel1);
 
-        jTextField5.setText("jTextField5");
-        jPanel1.add(jTextField5);
+        varMessage.setText("jTextField5");
+        jPanel1.add(varMessage);
 
         jLabel2.setText("Ordre des Cartes :");
         jPanel1.add(jLabel2);
@@ -100,15 +126,20 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         jPanel2.setLayout(new java.awt.GridLayout(10, 1));
 
-        jPanel10.setLayout(new java.awt.GridLayout());
+        etape1Pan.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel8.setText("Etape 1");
-        jPanel10.add(jLabel8);
+        etape1Lab.setText("Etape 1");
+        etape1Pan.add(etape1Lab);
 
-        jButton1.setText("Appliquer");
-        jPanel10.add(jButton1);
+        Etape1But.setText("Appliquer");
+        Etape1But.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etape1ButMouseClicked(evt);
+            }
+        });
+        etape1Pan.add(Etape1But);
 
-        jPanel2.add(jPanel10);
+        jPanel2.add(etape1Pan);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -125,15 +156,20 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane1);
 
-        jPanel11.setLayout(new java.awt.GridLayout());
+        etape2Pan.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel9.setText("Etape 2");
-        jPanel11.add(jLabel9);
+        etape2Lab.setText("Etape 2");
+        etape2Pan.add(etape2Lab);
 
-        jButton2.setText("Appliquer");
-        jPanel11.add(jButton2);
+        Etape2But.setText("Appliquer");
+        Etape2But.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etape2ButMouseClicked(evt);
+            }
+        });
+        etape2Pan.add(Etape2But);
 
-        jPanel2.add(jPanel11);
+        jPanel2.add(etape2Pan);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -150,15 +186,20 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane3);
 
-        jPanel12.setLayout(new java.awt.GridLayout());
+        etape3Pan.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel10.setText("Etape 3");
-        jPanel12.add(jLabel10);
+        etape3Lab.setText("Etape 3");
+        etape3Pan.add(etape3Lab);
 
-        jButton3.setText("Appliquer");
-        jPanel12.add(jButton3);
+        Etape3But.setText("Appliquer");
+        Etape3But.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etape3ButMouseClicked(evt);
+            }
+        });
+        etape3Pan.add(Etape3But);
 
-        jPanel2.add(jPanel12);
+        jPanel2.add(etape3Pan);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -175,15 +216,25 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane4);
 
-        jPanel13.setLayout(new java.awt.GridLayout());
+        etape4Pan.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel11.setText("Etape 4");
-        jPanel13.add(jLabel11);
+        etape4Lab.setText("Etape 4");
+        etape4Pan.add(etape4Lab);
 
-        jButton4.setText("Appliquer");
-        jPanel13.add(jButton4);
+        Etape4But.setText("Appliquer");
+        Etape4But.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etape4ButMouseClicked(evt);
+            }
+        });
+        Etape4But.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Etape4ButActionPerformed(evt);
+            }
+        });
+        etape4Pan.add(Etape4But);
 
-        jPanel2.add(jPanel13);
+        jPanel2.add(etape4Pan);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -200,15 +251,20 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane5);
 
-        jPanel14.setLayout(new java.awt.GridLayout());
+        etape5Pan.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel12.setText("Etape 5");
-        jPanel14.add(jLabel12);
+        etape5Lab.setText("Etape 5");
+        etape5Pan.add(etape5Lab);
 
-        jButton5.setText("Appliquer");
-        jPanel14.add(jButton5);
+        Etape5But.setText("Appliquer");
+        Etape5But.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etape5ButMouseClicked(evt);
+            }
+        });
+        etape5Pan.add(Etape5But);
 
-        jPanel2.add(jPanel14);
+        jPanel2.add(etape5Pan);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -227,20 +283,145 @@ public class CryptageManuel extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        jPanel3.setLayout(new java.awt.GridLayout(4, 1));
+        jPanel3.setLayout(new java.awt.GridLayout(5, 1));
 
         jLabel6.setText("Clef de cryptage");
         jPanel3.add(jLabel6);
-        jPanel3.add(jTextField6);
+
+        varClefCrypt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                varClefCryptActionPerformed(evt);
+            }
+        });
+        jPanel3.add(varClefCrypt);
 
         jLabel7.setText("Message crypté");
         jPanel3.add(jLabel7);
-        jPanel3.add(jTextField1);
+        jPanel3.add(varMessCrypt);
+
+        quitterBut.setText("Quitter");
+        quitterBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quitterButMouseClicked(evt);
+            }
+        });
+        jPanel3.add(quitterBut);
+
+        terminerBut.setText("Terminer");
+        terminerBut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                terminerButMouseClicked(evt);
+            }
+        });
+        jPanel3.add(terminerBut);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.SOUTH);
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Etape1ButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etape1ButMouseClicked
+        System.out.println(varMessage.getText());
+        if(etapeEff == 0){    
+            a5.Etape1();
+            etapeEff++;
+        }
+        else{
+            etape1Pan.setBackground( new Color(50,50,50,128));
+        }
+    }//GEN-LAST:event_Etape1ButMouseClicked
+
+    private void Etape2ButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etape2ButMouseClicked
+        if(etapeEff == 1){    
+            a5.Etape2();
+            etapeEff++;
+        }
+        else{
+            etape2Pan.setBackground( new Color(50,50,50,128));
+        }
+    }//GEN-LAST:event_Etape2ButMouseClicked
+
+    private void Etape3ButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etape3ButMouseClicked
+        if(etapeEff == 2){    
+            a5.Etape3();
+            etapeEff++;
+        }
+        else{
+            etape3Pan.setBackground( new Color(50,50,50,128));
+        }
+    }//GEN-LAST:event_Etape3ButMouseClicked
+
+    private void Etape4ButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Etape4ButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Etape4ButActionPerformed
+
+    private void Etape4ButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etape4ButMouseClicked
+        if(etapeEff == 3){    
+            a5.Etape4();
+            etapeEff++;
+        }
+        else{
+            etape4Pan.setBackground( new Color(50,50,50,128));
+        }
+    }//GEN-LAST:event_Etape4ButMouseClicked
+
+    private void Etape5ButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etape5ButMouseClicked
+        if(etapeEff == 4){ 
+            boolean redo = false;
+            redo = a5.Etape5();
+            if(redo == true)
+                System.out.println("Recommencez depuis l'étape 1");;
+            
+            if(redo == false){
+                String lettres = String.valueOf(a5.getLettres());
+                System.out.println("lettres récup depuis a5 : "+lettres);
+                a5.CodageDecodage(varMessage.getText(), lettres, true);
+                varMessCrypt.setText(a5.getMessCrypt());
+                varClefCrypt.setText(String.valueOf(a5.getLettres()));
+            }
+            etapeEff = 0;
+        }
+        else{
+            etape5Pan.setBackground( new Color(50,50,50,128));
+        }
+    }//GEN-LAST:event_Etape5ButMouseClicked
+
+    private void quitterButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitterButMouseClicked
+        parentP.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_quitterButMouseClicked
+
+    private void varClefCryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_varClefCryptActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_varClefCryptActionPerformed
+
+    private void terminerButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_terminerButMouseClicked
+        boolean redo = false;
+        switch(etapeEff){
+            case 0:a5.Etape1();a5.Etape2();a5.Etape3();a5.Etape4();redo = a5.Etape5();break;
+            case 1:a5.Etape2();a5.Etape3();a5.Etape4();redo = a5.Etape5();break;
+            case 2:a5.Etape3();a5.Etape4();redo = a5.Etape5();break;
+            case 3:a5.Etape4();redo = a5.Etape5();break;
+            case 4:redo = a5.Etape5();break;
+        }// TODO add your handling code here:
+        
+        while(redo){
+            a5.Etape1();
+            a5.Etape2();
+            a5.Etape3();
+            a5.Etape4();
+            redo = a5.Etape5();
+        }
+        
+        String lettres = String.valueOf(a5.getLettres());
+        System.out.println("lettres récup depuis a5 : "+lettres);
+        a5.CodageDecodage(varMessage.getText(), lettres, true);
+        varMessCrypt.setText(a5.getMessCrypt());
+        varClefCrypt.setText(String.valueOf(a5.getLettres()));
+        etapeEff = 0;
+    }//GEN-LAST:event_terminerButMouseClicked
 
     /**
      * @param args the command line arguments
@@ -270,41 +451,43 @@ public class CryptageManuel extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+          public void run() {
+                System.out.println("Ouverture CryptageManuel");
                 CryptageManuel dialog = new CryptageManuel(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
+                this.addWindowListener(new WindowAdapter(){
+                @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                //dialog.setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton Etape1But;
+    private javax.swing.JButton Etape2But;
+    private javax.swing.JButton Etape3But;
+    private javax.swing.JButton Etape4But;
+    private javax.swing.JButton Etape5But;
+    private javax.swing.JLabel etape1Lab;
+    private javax.swing.JPanel etape1Pan;
+    private javax.swing.JLabel etape2Lab;
+    private javax.swing.JPanel etape2Pan;
+    private javax.swing.JLabel etape3Lab;
+    private javax.swing.JPanel etape3Pan;
+    private javax.swing.JLabel etape4Lab;
+    private javax.swing.JPanel etape4Pan;
+    private javax.swing.JLabel etape5Lab;
+    private javax.swing.JPanel etape5Pan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -321,8 +504,11 @@ public class CryptageManuel extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton quitterBut;
+    private javax.swing.JButton terminerBut;
+    private javax.swing.JTextField varClefCrypt;
+    private javax.swing.JTextField varMessCrypt;
+    private javax.swing.JTextField varMessage;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

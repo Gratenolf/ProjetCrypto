@@ -1,34 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetcrypto;
 
-/**
- *
- * @author ah154489
- */
 public class CinqEtapes {
     private Carte[] jeuDeCartes;
     private char[] lettres;
     private char[] clefDeBase;
     private char[] clefCourante;
+    private String messCrypt;
+    private int ltIndiceCourant;
+    private int[] messCryptInt;
     
     //Initialisation des tableaux
     public CinqEtapes(Carte[] cartes){
         jeuDeCartes = new Carte[54];
-        lettres = new char[26];
-        System.out.println("Tableau Recopier ");
+        lettres = new char[54];
+        messCrypt = "";
+        ltIndiceCourant = 0;
+        messCryptInt = new int[54]; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //System.out.println("Tableau Recopier ");
         for(int i = 0;i < 54;i++){
             jeuDeCartes[i] = cartes[i];
-            System.out.print(jeuDeCartes[i].getValeur()+" ");
+            //System.out.print(jeuDeCartes[i].getValeur()+" ");
         }
-        System.out.println("\n");
-        for(int j = 0;j<26;j++){
-            lettres[j] = (char)('a'+j);
+        //System.out.println("\n");
+        for(int j = 0;j < 54;j++){
+            lettres[j] = 'a';
         }
     }
+    
+    public char[] getLettres(){
+        return lettres;
+    }
+    
+    public String getMessCrypt(){
+        return messCrypt;
+    }
+    
+    public int[] getMessCryptInt(){
+        return messCryptInt;
+    }
+    
     
     //Retourne la position du joker noir
     public int Batman(){
@@ -99,8 +109,8 @@ public class CinqEtapes {
         int posJokerInf = Math.min(posJokerNoir,posJokerRouge);
         int posJokerSup = Math.max(posJokerNoir,posJokerRouge);
         
-        System.out.println("Indice Joker Inf : "+posJokerInf);
-        System.out.println("Indice Joker Sup : "+posJokerSup);
+        //System.out.println("Indice Joker Inf : "+posJokerInf);
+        //System.out.println("Indice Joker Sup : "+posJokerSup);
         Carte[] tabtempo = new Carte[54];
         for(int i = 0;i < 54;i++){
             if(i == posJokerInf||i == posJokerSup+1){
@@ -127,7 +137,7 @@ public class CinqEtapes {
             }
             vartempo += 1;
         }
-        System.out.print("\n Tableau tempo A Etape 3 \n");
+        /*System.out.print("\n Tableau tempo A Etape 3 \n");
         for(int j = tabtempo.length-(posJokerInf);j <= 53;j++){
             
             System.out.print(" "+tabtempo[j].getValeur()+"("+j+")");
@@ -153,12 +163,12 @@ public class CinqEtapes {
             System.out.print(" "+tabtempo[l].getValeur());
         System.out.println("\n");
         
-        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");
+        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");*/
         for(int m = 0;m < 54;m++){
             jeuDeCartes[m] = tabtempo[m];
-            System.out.print(jeuDeCartes[m].getValeur()+" ");
+            //System.out.print(jeuDeCartes[m].getValeur()+" ");
         }
-        System.out.println("\n");
+        //System.out.println("\n");
     }
     
     public int RechnbCarte(int carteRech){
@@ -168,8 +178,8 @@ public class CinqEtapes {
         switch (Elem) {
             case "Trefle":
                 //1-13
-                System.out.println("Trefle"+" "+nomElem);
-                if(!nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K") )
+                //System.out.println("Trefle"+" "+nomElem);
+                if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K") )
                     nbCarte = Integer.parseInt(nomElem);
                 else
                     if(nomElem.equals("J"))
@@ -178,24 +188,28 @@ public class CinqEtapes {
                         nbCarte = 12;
                     else if(nomElem.equals("K"))
                         nbCarte = 13;
+                    else if(nomElem.equals("A"))
+                        nbCarte = 1;
                 break;
             case "Carreau":
                 //14-26
-                System.out.println("Carreau"+" "+nomElem);
-                if(!nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
+                //System.out.println("Carreau"+" "+nomElem);
+                if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte=13+Integer.parseInt(nomElem);
                 else
                     if(nomElem.equals("J"))
-                        nbCarte = 13+11;
+                        nbCarte = 13 + 11;
                     else if(nomElem.equals("Q"))
-                        nbCarte = 13+12;
+                        nbCarte = 13 + 12;
                     else if(nomElem.equals("K"))
-                        nbCarte = 13+13;
+                        nbCarte = 13 + 13;
+                    else if(nomElem.equals("A"))
+                        nbCarte = 13 + 1;
                 break;
             case "Coeur":
                 //27-39
-                System.out.println("Coeur"+" "+nomElem);
-                if(!nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
+                //System.out.println("Coeur"+" "+nomElem);
+                if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte = 26 + Integer.parseInt(nomElem);
                 else
                     if(nomElem.equals("J"))
@@ -204,11 +218,13 @@ public class CinqEtapes {
                         nbCarte = 26 + 12;
                     else if(nomElem.equals("K"))
                         nbCarte = 26 + 13;
+                    else if(nomElem.equals("A"))
+                        nbCarte = 26 + 1;
                 break;
             case "Pique":
                 //40-52
-                System.out.println("Pique"+" "+nomElem);
-                if(!nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
+                //System.out.println("Pique"+" "+nomElem);
+                if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte = 39 + Integer.parseInt(nomElem);
                 else
                     if(nomElem.equals("J"))
@@ -217,6 +233,8 @@ public class CinqEtapes {
                         nbCarte = 39 + 12;
                     else if(nomElem.equals("K"))
                         nbCarte = 39 + 13;
+                    else if(nomElem.equals("A"))
+                        nbCarte = 39 + 1;
                 break;
             default:
                 nbCarte = 53;
@@ -249,36 +267,126 @@ public class CinqEtapes {
                 incFinTab++;
             }
         }
-        System.out.println("Tableau temporaire Etape 4");
+        /*System.out.println("Tableau temporaire Etape 4");
         for(int j = 0;j < 54;j++){
             System.out.print(" "+tabtempo[j].getValeur());
             
         }
         System.out.println("\n");
-        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");
+        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");*/
         for(int m = 0;m < 54;m++){
             jeuDeCartes[m] = tabtempo[m];
-            System.out.print(jeuDeCartes[m].getValeur()+" ");
+            //System.out.print(jeuDeCartes[m].getValeur()+" ");
         }
         
     }
     
     public boolean Etape5(){
         int n = RechnbCarte(0);
-        System.out.println("Numero Première Carte n "+n);
+        //System.out.println("Numero Première Carte n "+n);
+        if(n == 54)
+            n = 1;
         int m = RechnbCarte(n);
         char lettre = 'A';
         lettre -= 1;
         boolean redo = false;
-        System.out.println("Numero Carte trouvé m "+m);
+        //System.out.println("Numero Carte trouvé m "+m);
         if(m == 53)
             redo=true;//Refaire Etape 1/2/3/4/5
-        else if(m > 26)
+        else if(m > 26){
             m -= 26;
-        for(int i = 0;i < m;i++)
-            lettre += 1;
-        System.out.println("Lettre associee "+lettre);
+            for(int i = 0;i < m;i++)
+                lettre += 1;
+            //System.out.println("Lettre associee "+lettre);
+            if(ltIndiceCourant < lettres.length){
+                redo = true;
+                lettres[ltIndiceCourant]=lettre;
+                ltIndiceCourant = ltIndiceCourant + 1;
+            }
+        }
+        else{
+            for(int i = 0;i < m;i++)
+                lettre += 1;
+            //System.out.println("Lettre associee "+lettre);
+            if(ltIndiceCourant < lettres.length){
+                redo = true;
+                lettres[ltIndiceCourant]=lettre;
+                ltIndiceCourant = ltIndiceCourant + 1;
+            }
+        }
+        if(!redo)
+            ltIndiceCourant = 0;           
         return redo;
+    }
+    
+    public void CodageDecodage(String message, String clef, boolean codage){
+        if(message.length() < clef.length()){
+            messCrypt="";
+            int tabMess[] = new int[message.length()];
+            int tabClef[] = new int[clef.length()];
+            int messageCrypt[] = new int[message.length()];
+            String messUperCase="";
+            String clefUperCase="";
+            
+            messUperCase = message.toUpperCase();
+            clefUperCase = clef.toUpperCase();
+            
+            //System.out.println("UPPER CASE MESS "+messUperCase);
+            //System.out.println("UPPER CASE CLEF "+clefUperCase);
+            
+            //Conversion message(string) en int
+            for(int i = 0;i < messUperCase.length();i++)
+                tabMess[i] = (int)messUperCase.charAt(i)-64;
+            
+            //Conversion clef(string) en int
+            for(int j = 0;j < clefUperCase.length();j++)
+                tabClef[j] = (int)clefUperCase.charAt(j)-64;
+                    
+            /*for(int k = 0;k < message.length();k++)
+                System.out.print(tabMess[k]);
+            System.out.println("\n Fin message entier");
+            for(int l = 0;l < clef.length();l++)
+                System.out.print(tabClef[l]);
+            System.out.println("\n Fin clef entier");*/
+            
+            if(codage){
+                //System.out.println("codage");
+                for(int m = 0;m < message.length();m++){
+                    if(tabMess[m] + tabClef[m] > 26)
+                        messageCrypt[m] = (tabMess[m] + tabClef[m]) - 26;
+                    else
+                        messageCrypt[m] = (tabMess[m] + tabClef[m]);
+                }
+            }
+            else{
+                //System.out.println("decodage");
+                for(int n = 0;n < message.length();n++){
+                    if(tabMess[n] - tabClef[n] < 1)
+                        messageCrypt[n] = (tabMess[n] - tabClef[n]) + 26;
+                    else
+                        messageCrypt[n] = (tabMess[n] - tabClef[n]);
+                }
+            }
+            
+            messCryptInt = new int[messageCrypt.length];
+            //System.out.println("messageCrypt INT");
+            for(int o = 0;o < messageCrypt.length;o++){
+                messCrypt += Character.toString((char)(messageCrypt[o] + 64));
+                messCryptInt[o] = messageCrypt[o];
+            }
+            //String.valueOf(messageCrypt[o]);
+            //convertir messageCrypt en string
+            
+            /*System.out.println("");
+            
+            for(int p = 0;p < messageCrypt.length;p++)
+                System.out.print(messageCrypt[p]);
+            
+            System.out.println("\n");
+            
+            System.out.println("message crypt de l'instance CinqEtapes "+messCrypt);*/
+
+        }
     }
     
     public String toString(){

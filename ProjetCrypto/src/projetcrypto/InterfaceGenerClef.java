@@ -32,7 +32,6 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
             afficheCarte[i + N] = genLabelAff();
             tabCarte[i] = creerPanCarte(new Carte(i + 1));
             panneauCarte.add(tabCarte[i]);
-            System.out.print((i + 1) + "");
         }
         for(int i = 0; i< 2 * N; i++)
             affichage.add(afficheCarte[i]);
@@ -184,8 +183,8 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        bas.setPreferredSize(new java.awt.Dimension(size[2] * N + N * 2, 500));
-        bas.setMaximumSize(new java.awt.Dimension(size[2] * N + N * 2, 500));
+        //bas.setPreferredSize(new java.awt.Dimension(size[2] * N + N * 2, 500));
+        //bas.setMaximumSize(new java.awt.Dimension(size[2] * N + N * 2, 500));
         
         jPanel1.setLayout(new java.awt.BorderLayout());
 
