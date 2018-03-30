@@ -8,6 +8,8 @@ public class CinqEtapes {
     private String messCrypt;
     private int ltIndiceCourant;
     private int[] messCryptInt;
+    private String messVide;
+    private String ancienMessVide;
     
     //Initialisation des tableaux
     public CinqEtapes(Carte[] cartes){
@@ -16,6 +18,7 @@ public class CinqEtapes {
         messCrypt = "";
         ltIndiceCourant = 0;
         messCryptInt = new int[54]; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        messVide = "";
         //System.out.println("Tableau Recopier ");
         for(int i = 0;i < 54;i++){
             jeuDeCartes[i] = cartes[i];
@@ -39,6 +42,17 @@ public class CinqEtapes {
         return messCryptInt;
     }
     
+    public Carte[] getJDC(){
+        return this.jeuDeCartes;
+    }
+    
+    public String getMessVide(){
+        return messVide;
+    }
+    
+    public String getAncienMessVide(){
+        return ancienMessVide;
+    }
     
     //Retourne la position du joker noir
     public int Batman(){
@@ -319,20 +333,42 @@ public class CinqEtapes {
         return redo;
     }
     
-    public void CodageDecodage(String message, String clef, boolean codage){
-        if(message.length() < clef.length()){
+    public boolean VerifChaineEquals(String message,String ancienMess){
+        String messUperCase="";
+        String ancienMessUperCase="";
+        messUperCase = message.toUpperCase();
+        ancienMessUperCase = ancienMess.toUpperCase();
+        
+        messUperCase = messUperCase.replaceAll("[^\\w]", "");
+        messUperCase = messUperCase.replaceAll("[0-9]", "");
+        
+        ancienMessUperCase = ancienMessUperCase.replaceAll("[^\\w]", "");
+        ancienMessUperCase = ancienMessUperCase.replaceAll("[0-9]", "");
+        
+        this.messVide = messUperCase;
+        this.ancienMessVide = ancienMessUperCase;
+        
+        if(messUperCase.equals(ancienMessUperCase))
+            return true;
+        
+        return false;
+    }
+    
+    public boolean CodageDecodage(String message, String clef, boolean codage){
+        String messUperCase="";
+        String clefUperCase="";
+        messUperCase = message.toUpperCase();
+        clefUperCase = clef.toUpperCase();
+        messUperCase = messUperCase.replaceAll("[^\\w]", "");
+        messUperCase = messUperCase.replaceAll("[0-9]", "");
+        clefUperCase = clefUperCase.replaceAll("[^\\w]", "");
+        
+        System.out.println("\n taille message"+messUperCase.length());
+        if(message.length() < clef.length() && messUperCase.length() > 0){
             messCrypt="";
-            int tabMess[] = new int[message.length()];
+            int tabMess[] = new int[messUperCase.length()];
             int tabClef[] = new int[clef.length()];
-            int messageCrypt[] = new int[message.length()];
-            String messUperCase="";
-            String clefUperCase="";
-            
-            messUperCase = message.toUpperCase();
-            clefUperCase = clef.toUpperCase();
-            
-            //System.out.println("UPPER CASE MESS "+messUperCase);
-            //System.out.println("UPPER CASE CLEF "+clefUperCase);
+            int messageCrypt[] = new int[messUperCase.length()];
             
             //Conversion message(string) en int
             for(int i = 0;i < messUperCase.length();i++)
@@ -351,7 +387,7 @@ public class CinqEtapes {
             
             if(codage){
                 //System.out.println("codage");
-                for(int m = 0;m < message.length();m++){
+                for(int m = 0;m < messUperCase.length();m++){
                     if(tabMess[m] + tabClef[m] > 26)
                         messageCrypt[m] = (tabMess[m] + tabClef[m]) - 26;
                     else
@@ -360,7 +396,7 @@ public class CinqEtapes {
             }
             else{
                 //System.out.println("decodage");
-                for(int n = 0;n < message.length();n++){
+                for(int n = 0;n < messUperCase.length();n++){
                     if(tabMess[n] - tabClef[n] < 1)
                         messageCrypt[n] = (tabMess[n] - tabClef[n]) + 26;
                     else
@@ -385,8 +421,9 @@ public class CinqEtapes {
             System.out.println("\n");
             
             System.out.println("message crypt de l'instance CinqEtapes "+messCrypt);*/
-
+            return true;
         }
+        return false;
     }
     
     public String toString(){
