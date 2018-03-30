@@ -480,9 +480,6 @@ public class CryptageManuel extends javax.swing.JDialog {
         if(etapeEff == 4){ 
             boolean redo = false;
             redo = a5.Etape5();
-            /*if(redo == true)
-                System.out.println("Recommencez depuis l'étape 1");;
-            */
             if(redo == false){
                 String lettres = String.valueOf(a5.getLettres());
                 a5.CodageDecodage(varMessage.getText(), lettres, true);
@@ -578,20 +575,6 @@ public class CryptageManuel extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-          public void run() {
-                System.out.println("Ouverture CryptageManuel");
-                CryptageManuel dialog = new CryptageManuel(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                this.addWindowListener(new WindowAdapter(){
-                @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                //dialog.setVisible(true);
-            }
-        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

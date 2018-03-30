@@ -49,7 +49,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
                 
         for(int i = 0; i < N; i++){
             Carte c = tabCarte[i];
-            //System.out.print(" i : " + i + " ");
             afficheCarte[i].setText(c.getNom());
             if(c.getElement() != "Noir" && c.getElement() != "Rouge"){
                 ImageIcon icon = new ImageIcon("img/" + c.getElement() + ".png");
@@ -381,7 +380,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
                 int rnd = (int) (Math.random() * 54) + 1;
                 if(val[rnd - 1] != 0){
                     this.jeuDeCarte[k] = new Carte(rnd);
-                    //System.out.println("indice : " + rnd + " getElement : " + jeuDeCarte[k].getElement());
                     k++;
                     val[rnd - 1] = 0;
                 }
@@ -405,7 +403,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
             igc.setVisible(true);
             super.setVisible(true);
             if(igc.ok){
-                //System.out.println("HEY COUCOU");
                 this.jeuDeCarte = igc.jdc;
                 this.clefNonNulle = true;
                 this.a5 = new CinqEtapes(this.jeuDeCarte);
@@ -456,7 +453,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
                 this.setVisible(false);                             //Cache la fenêtre principale
                 cM.setVisible(true);                                //Affiche la fenêtre du cryptage manuel
                 this.a5 = cM.getA5();
-                //System.out.println("J'ai FINI !");
                 messageCrpt.setText(a5.getMessCrypt());
                 if(cM.codEff){
                     messADecrypt = true;
@@ -469,7 +465,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         
         }
         else{
-            //System.out.println("Veuillez initialiser la clef");
             JOptionPane.showMessageDialog(this,"Veuillez initialiser la clef et rentrez un message différent du précédent");
         }
     }//GEN-LAST:event_cryptManuMouseClicked
@@ -478,7 +473,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         if(messADecrypt){
            decMess.setText(a5.getMessCrypt());
             a5.CodageDecodage(a5.getMessCrypt(), String.valueOf(a5.getLettres()), false);
-            //System.out.println("Message décrypté "+a5.getMessCrypt());
             decMessFinal.setText(a5.getMessCrypt());
             int[] messCryptInt = a5.getMessCryptInt();
             String strMessCryptInt ="";

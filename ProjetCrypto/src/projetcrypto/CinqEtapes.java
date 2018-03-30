@@ -19,12 +19,9 @@ public class CinqEtapes {
         ltIndiceCourant = 0;
         messCryptInt = new int[54]; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         messVide = "";
-        //System.out.println("Tableau Recopier ");
         for(int i = 0;i < 54;i++){
             jeuDeCartes[i] = cartes[i];
-            //System.out.print(jeuDeCartes[i].getValeur()+" ");
         }
-        //System.out.println("\n");
         for(int j = 0;j < 54;j++){
             lettres[j] = 'a';
         }
@@ -81,7 +78,6 @@ public class CinqEtapes {
     
     //Echange la carte à la position posA avec celle à la position posB dans le tableau jeuDeCartes
     public void EchangeCartes(int posA,int posB){
-        //System.out.println(""+jeuDeCartes[posA].getValeur());
         Carte tempo = new Carte(jeuDeCartes[posA].getValeur());
         tempo=jeuDeCartes[posA];
         jeuDeCartes[posA] = jeuDeCartes[posB];
@@ -92,7 +88,6 @@ public class CinqEtapes {
     public void Etape1(){
         //Recul JokerNoir 1 case
         int posJokerNoir = Batman();
-        //System.out.println(""+posJokerNoir);
         if(posJokerNoir == -1) System.out.println("Erreur Etape1 Joker Noir non trouvé");
         else{
             if(posJokerNoir == 53)//Verifier si jokerNoir en dernière position
@@ -123,66 +118,25 @@ public class CinqEtapes {
         int posJokerInf = Math.min(posJokerNoir,posJokerRouge);
         int posJokerSup = Math.max(posJokerNoir,posJokerRouge);
         
-        //System.out.println("Indice Joker Inf : "+posJokerInf);
-        //System.out.println("Indice Joker Sup : "+posJokerSup);
         Carte[] tabtempo = new Carte[54];
         for(int i = 0;i < 54;i++){
             if(i == posJokerInf||i == posJokerSup+1){
                 vartempo = 0;
-                //System.out.println("Reset vartempo");
             }
             if(i < posJokerInf){
                 tabtempo[tabtempo.length-(posJokerInf)+vartempo] = jeuDeCartes[i];
-                //System.out.print("getvaleur "+tabtempo[tabtempo.length-(posJokerInf)+vartempo].getValeur());
-                //System.out.println("");
-                //System.out.println("Tableau - Joker Bas "+ (tabtempo.length-(posJokerInf)+vartempo));
             }
             else if(i <= posJokerSup){
                 tabtempo[tabtempo.length-(posJokerSup+1)+vartempo] = jeuDeCartes[i];
-                //System.out.print("getvaleur "+tabtempo[tabtempo.length-(posJokerSup)+vartempo].getValeur());
-                //System.out.println("");
-                //System.out.println("Tableau - JokerHaut "+ (tabtempo.length-(posJokerSup+1)+vartempo));
             }
             else{
                 tabtempo[vartempo] = jeuDeCartes[i];
-                //System.out.print("getvaleur "+tabtempo[vartempo].getValeur());
-                //System.out.println("");
-                //System.out.print(" "+vartempo);
             }
             vartempo += 1;
         }
-        /*System.out.print("\n Tableau tempo A Etape 3 \n");
-        for(int j = tabtempo.length-(posJokerInf);j <= 53;j++){
-            
-            System.out.print(" "+tabtempo[j].getValeur()+"("+j+")");
-        }
-        System.out.println("");
-        
-        System.out.print("\n Tableau tempo B Etape 3 \n");
-        for(int k = tabtempo.length-(posJokerSup)-1;k < tabtempo.length-(posJokerInf);k++){
-            
-            System.out.print(" "+tabtempo[k].getValeur()+"("+k+")");
-        }
-        System.out.println("");
-        
-        System.out.print("\n Tableau tempo C Etape 3 \n");
-        for(int k = 0;k < tabtempo.length-(posJokerSup)-1;k++){
-            
-            System.out.print(" "+tabtempo[k].getValeur());
-        }
-        System.out.println("\n");
-        
-        System.out.println("Etape 3 tableau tempo complet");
-        for(int l = 0;l < 54;l++)
-            System.out.print(" "+tabtempo[l].getValeur());
-        System.out.println("\n");
-        
-        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");*/
         for(int m = 0;m < 54;m++){
             jeuDeCartes[m] = tabtempo[m];
-            //System.out.print(jeuDeCartes[m].getValeur()+" ");
         }
-        //System.out.println("\n");
     }
     
     public int RechnbCarte(int carteRech){
@@ -192,7 +146,6 @@ public class CinqEtapes {
         switch (Elem) {
             case "Trefle":
                 //1-13
-                //System.out.println("Trefle"+" "+nomElem);
                 if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K") )
                     nbCarte = Integer.parseInt(nomElem);
                 else
@@ -207,7 +160,6 @@ public class CinqEtapes {
                 break;
             case "Carreau":
                 //14-26
-                //System.out.println("Carreau"+" "+nomElem);
                 if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte=13+Integer.parseInt(nomElem);
                 else
@@ -222,7 +174,6 @@ public class CinqEtapes {
                 break;
             case "Coeur":
                 //27-39
-                //System.out.println("Coeur"+" "+nomElem);
                 if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte = 26 + Integer.parseInt(nomElem);
                 else
@@ -237,7 +188,6 @@ public class CinqEtapes {
                 break;
             case "Pique":
                 //40-52
-                //System.out.println("Pique"+" "+nomElem);
                 if(!nomElem.equals("A") && !nomElem.equals("J") && !nomElem.equals("Q") && !nomElem.equals("K"))
                     nbCarte = 39 + Integer.parseInt(nomElem);
                 else
@@ -281,37 +231,27 @@ public class CinqEtapes {
                 incFinTab++;
             }
         }
-        /*System.out.println("Tableau temporaire Etape 4");
-        for(int j = 0;j < 54;j++){
-            System.out.print(" "+tabtempo[j].getValeur());
-            
-        }
-        System.out.println("\n");
-        System.out.println("Tableau tempo recopier dans tableau jeuDeCartes");*/
+
         for(int m = 0;m < 54;m++){
             jeuDeCartes[m] = tabtempo[m];
-            //System.out.print(jeuDeCartes[m].getValeur()+" ");
         }
         
     }
     
     public boolean Etape5(){
         int n = RechnbCarte(0);
-        //System.out.println("Numero Première Carte n "+n);
         if(n == 54)
             n = 1;
         int m = RechnbCarte(n);
         char lettre = 'A';
         lettre -= 1;
         boolean redo = false;
-        //System.out.println("Numero Carte trouvé m "+m);
         if(m == 53)
             redo=true;//Refaire Etape 1/2/3/4/5
         else if(m > 26){
             m -= 26;
             for(int i = 0;i < m;i++)
                 lettre += 1;
-            //System.out.println("Lettre associee "+lettre);
             if(ltIndiceCourant < lettres.length){
                 redo = true;
                 lettres[ltIndiceCourant]=lettre;
@@ -321,7 +261,6 @@ public class CinqEtapes {
         else{
             for(int i = 0;i < m;i++)
                 lettre += 1;
-            //System.out.println("Lettre associee "+lettre);
             if(ltIndiceCourant < lettres.length){
                 redo = true;
                 lettres[ltIndiceCourant]=lettre;
@@ -363,17 +302,14 @@ public class CinqEtapes {
         messUperCase = messUperCase.replaceAll("[^\\w]", "");
         messUperCase = messUperCase.replaceAll("[0-9]", "");
         clefUperCase = clefUperCase.replaceAll("[^\\w]", "");
+  
         
-        System.out.println("\n taille message"+messUperCase.length());
-        //System.out.println("\n taille message"+messUperCase.length());
         if(message.length() < clef.length() && messUperCase.length() > 0){
             messCrypt="";
             int tabMess[] = new int[messUperCase.length()];
             int tabClef[] = new int[clef.length()];
             int messageCrypt[] = new int[messUperCase.length()];
 
-            //System.out.println("UPPER CASE MESS "+messUperCase);
-            //System.out.println("UPPER CASE CLEF "+clefUperCase);
             
             //Conversion message(string) en int
             for(int i = 0;i < messUperCase.length();i++)
@@ -383,15 +319,8 @@ public class CinqEtapes {
             for(int j = 0;j < clefUperCase.length();j++)
                 tabClef[j] = (int)clefUperCase.charAt(j)-64;
                     
-            /*for(int k = 0;k < message.length();k++)
-                System.out.print(tabMess[k]);
-            System.out.println("\n Fin message entier");
-            for(int l = 0;l < clef.length();l++)
-                System.out.print(tabClef[l]);
-            System.out.println("\n Fin clef entier");*/
             
             if(codage){
-                //System.out.println("codage");
                 for(int m = 0;m < messUperCase.length();m++){
                     if(tabMess[m] + tabClef[m] > 26)
                         messageCrypt[m] = (tabMess[m] + tabClef[m]) - 26;
@@ -400,7 +329,6 @@ public class CinqEtapes {
                 }
             }
             else{
-                //System.out.println("decodage");
                 for(int n = 0;n < messUperCase.length();n++){
                     if(tabMess[n] - tabClef[n] < 1)
                         messageCrypt[n] = (tabMess[n] - tabClef[n]) + 26;
@@ -410,22 +338,10 @@ public class CinqEtapes {
             }
             
             messCryptInt = new int[messageCrypt.length];
-            //System.out.println("messageCrypt INT");
             for(int o = 0;o < messageCrypt.length;o++){
                 messCrypt += Character.toString((char)(messageCrypt[o] + 64));
                 messCryptInt[o] = messageCrypt[o];
             }
-            //String.valueOf(messageCrypt[o]);
-            //convertir messageCrypt en string
-            
-            /*System.out.println("");
-            
-            for(int p = 0;p < messageCrypt.length;p++)
-                System.out.print(messageCrypt[p]);
-            
-            System.out.println("\n");
-            
-            System.out.println("message crypt de l'instance CinqEtapes "+messCrypt);*/
             return true;
         }
         return false;
