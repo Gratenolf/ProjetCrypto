@@ -8,7 +8,9 @@ import javax.swing.border.LineBorder;
 public class InterfaceGenerClef extends javax.swing.JDialog {
     
     private int jeuDeCarte[];
-    private boolean ok;
+    private java.awt.Frame MichelVedette;
+    public Carte jdc[];
+    public boolean ok;
     private int k = 0;
     private final int N = 54;
     private JPanel tabCarte[];
@@ -19,9 +21,12 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
 
     public InterfaceGenerClef(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.MichelVedette = parent;
         initComponents();
+        this.setLocationRelativeTo(null);
         this.ok = false;
         jeuDeCarte = new int[N];
+        jdc = new Carte[N];
         tabCarte = new JPanel[N];
         tabIdCarte = new JTextField[N];
         tabButtonCarte = new JToggleButton[N];
@@ -117,7 +122,7 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
                         k++;
                     tabIdCarte[valCarte].setText((k) + "");
                     jtb.setBackground(new Color(200,200,200));
-                    afficheJDC();
+                    //afficheJDC();
                     tabIdCarte[valCarte].setBackground(new Color(200,200,200));
                 }
                 else{
@@ -133,7 +138,7 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
                     rempLab(k, null, false);
                     jtb.setForeground(Color.white);
                     tabIdCarte[valCarte].setBackground(Color.white);
-                    afficheJDC();
+                    //afficheJDC();
                     jtb.setBackground(Color.white);
                 }
             }
@@ -259,19 +264,21 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
     private void annulerActionPerformed(java.awt.event.ActionEvent evt) {                                        
         if(JOptionPane.showConfirmDialog(this,"Etes-vous sur de vouloir annuler ?\ntoute les selections seront perdues.","Attention !",JOptionPane.YES_NO_OPTION) == 0){
             this.setVisible(false);
+            this.MichelVedette.setVisible(true);
             this.dispose();
         }
     }                                       
 
     private void validerActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        if(k != (N - 1))
+        if(k != N)
             JOptionPane.showMessageDialog(this,"Le code n'est pas complet.");
         else{
             if(JOptionPane.showConfirmDialog(this,"Etes-vous sur de vouloir valider le code ?","Attention !",JOptionPane.YES_NO_OPTION) == 0){
                 this.ok = true;
                 for(int i =0; i < N; i++)
-                    jeuDeCarte[i] += 1;
+                    this.jdc[i] = new Carte(this.jeuDeCarte[i] + 1);
                 this.setVisible(false);
+                this.MichelVedette.setVisible(true);
                 this.dispose();
             }
         }
@@ -294,7 +301,7 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceGenerClef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 InterfaceGenerClef dialog = new InterfaceGenerClef(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -305,7 +312,7 @@ public class InterfaceGenerClef extends javax.swing.JDialog {
                 });
                 dialog.setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify                     
