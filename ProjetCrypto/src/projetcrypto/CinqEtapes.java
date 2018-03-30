@@ -333,6 +333,7 @@ public class CinqEtapes {
         return redo;
     }
     
+
     public boolean VerifChaineEquals(String message,String ancienMess){
         String messUperCase="";
         String ancienMessUperCase="";
@@ -364,11 +365,15 @@ public class CinqEtapes {
         clefUperCase = clefUperCase.replaceAll("[^\\w]", "");
         
         System.out.println("\n taille message"+messUperCase.length());
+        //System.out.println("\n taille message"+messUperCase.length());
         if(message.length() < clef.length() && messUperCase.length() > 0){
             messCrypt="";
             int tabMess[] = new int[messUperCase.length()];
             int tabClef[] = new int[clef.length()];
             int messageCrypt[] = new int[messUperCase.length()];
+
+            //System.out.println("UPPER CASE MESS "+messUperCase);
+            //System.out.println("UPPER CASE CLEF "+clefUperCase);
             
             //Conversion message(string) en int
             for(int i = 0;i < messUperCase.length();i++)

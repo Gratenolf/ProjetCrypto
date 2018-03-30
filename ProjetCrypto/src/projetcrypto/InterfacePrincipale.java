@@ -446,7 +446,6 @@ public class InterfacePrincipale extends javax.swing.JFrame {
         }
         else
             JOptionPane.showMessageDialog(this,"Veuillez initialiser la clef et rentrez un message différent du précédent");
-
     }//GEN-LAST:event_crypterMouseClicked
 
     private void cryptManuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cryptManuMouseClicked
@@ -467,6 +466,7 @@ public class InterfacePrincipale extends javax.swing.JFrame {
                 }
             else
                 JOptionPane.showMessageDialog(this,"Veuillez initialiser la clef et rentrez un message différent du précédent");
+        
         }
         else{
             //System.out.println("Veuillez initialiser la clef");
